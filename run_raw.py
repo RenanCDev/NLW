@@ -3,7 +3,7 @@ from flask import Flask as fk
 from flask import request as rq
 from flask import jsonify as jf
 from barcode import Code128 as cd
-from barcode.writer import ImageWriter as bw
+from barcode.writer import ImageWriter as iw
 
 os.system('clear')
 
@@ -14,7 +14,7 @@ def create_tag():
     body = rq.json
     product_code = body.get('product_code')
 
-    tag = cd(product_code, writer=bw())
+    tag = cd(product_code, writer=iw())
     path_from_tag = f'{tag}'
     tag.save(path_from_tag)
 
